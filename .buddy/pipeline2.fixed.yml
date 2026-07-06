@@ -1,19 +1,15 @@
-# Buddy pipeline (2/2) — eurostack.alternative.to
-# build-publish: MANUAL (on: CLICK) on the FIXED `main` ref. Builds the site
-# from data/ into dist/ and publishes the artifact. Nothing goes live until a
-# maintainer runs this by hand — the deliberate approval step.
 - pipeline: build-publish
   name: Build & publish eurostack.alternative.to
-  on: CLICK
   refs:
   - refs/heads/main
+  events:
+  - type: PUSH
   actions:
   - action: Build site
     type: BUILD
+    commands: ./scripts/build
     docker_image_name: library/node
-    docker_image_tag: "20"
-    execute_commands:
-    - ./scripts/build
+    docker_image_tag: 20
   - action: Publish site
     type: PUBLISH_ARTIFACT_VERSION
     local_path: dist
