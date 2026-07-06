@@ -1,0 +1,13 @@
+{
+  "name": "eurostack-alternative-to",
+  "private": true,
+  "type": "module",
+  "description": "European alternatives to US SaaS and cloud tools.",
+  "scripts": {
+    "build": "node scripts/generate.mjs",
+    "verify": "node scripts/verify.mjs"
+  },
+  "dependencies": {
+    "js-yaml": "^4.1.0"
+  }
+}

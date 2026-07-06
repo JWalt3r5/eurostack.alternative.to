@@ -1,0 +1,30 @@
+category:
+  slug: maps
+  name: Maps & geocoding
+  description: >
+    Mapping, geocoding and routing APIs instead of Google Maps Platform.
+  alternative_to:
+    - Google Maps Platform
+    - Mapbox
+  updated: 2026-07-06
+
+tools:
+  - name: HERE
+    url: https://www.here.com/
+    hq: Amsterdam, Netherlands
+    flag: "🇳🇱"
+    license: Proprietary
+    hosting: cloud
+    data_residency: European mapping company (HERE Global B.V.).
+    free_tier: Free developer tier with a monthly request allowance.
+    paid_from: Usage-based pricing above the free tier.
+    best_for: Products that need maps, geocoding and routing APIs from a European provider.
+    notes: >
+      Long-established location platform (maps, geocoding, routing, traffic).
+      Owned by a European automotive consortium.
+    alternative_to:
+      - Google Maps Platform
+      - Mapbox
+    sources:
+      - url: https://www.here.com/get-started/pricing
+        verified: 2026-07-06

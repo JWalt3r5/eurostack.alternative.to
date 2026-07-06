@@ -1,0 +1,28 @@
+category:
+  slug: search
+  name: Search engines
+  description: >
+    Privacy-respecting web search instead of Google Search.
+  alternative_to:
+    - Google Search
+  updated: 2026-07-06
+
+tools:
+  - name: Qwant
+    url: https://www.qwant.com/
+    hq: Paris, France
+    flag: "🇫🇷"
+    license: Proprietary
+    hosting: cloud
+    data_residency: French search engine; no user tracking or ad profiling.
+    free_tier: Free.
+    paid_from: "—"
+    best_for: Everyday web search without being tracked, from a European provider.
+    notes: >
+      French search engine that does not track users or build ad profiles, and
+      is developing its own European search index.
+    alternative_to:
+      - Google Search
+    sources:
+      - url: https://www.qwant.com/
+        verified: 2026-07-06

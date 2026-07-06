@@ -1,0 +1,30 @@
+category:
+  slug: office-productivity
+  name: Office & productivity
+  description: >
+    Document, spreadsheet and presentation suites instead of Google Workspace or Microsoft 365.
+  alternative_to:
+    - Google Workspace
+    - Microsoft 365
+  updated: 2026-07-06
+
+tools:
+  - name: ONLYOFFICE
+    url: https://www.onlyoffice.com/
+    hq: Riga, Latvia
+    flag: "🇱🇻"
+    license: AGPL-3.0 (open source)
+    hosting: both
+    data_residency: Self-host on your own servers, or use their EU cloud.
+    free_tier: Free — Community/Personal edition; self-hosting is free.
+    paid_from: Paid cloud and enterprise plans available.
+    best_for: Teams wanting a self-hostable office suite with strong MS Office format compatibility.
+    notes: >
+      Docs, sheets and slides with high fidelity for .docx/.xlsx/.pptx. Made by
+      Ascensio System (Latvia); integrates with Nextcloud and others.
+    alternative_to:
+      - Google Workspace
+      - Microsoft 365
+    sources:
+      - url: https://www.onlyoffice.com/pricing.aspx
+        verified: 2026-07-06

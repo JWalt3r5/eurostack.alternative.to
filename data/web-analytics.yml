@@ -1,0 +1,28 @@
+category:
+  slug: web-analytics
+  name: Web analytics
+  description: >
+    Privacy-friendly, EU-hosted site analytics instead of Google Analytics.
+  alternative_to:
+    - Google Analytics
+  updated: 2026-07-06
+
+tools:
+  - name: Plausible Analytics
+    url: https://plausible.io/
+    hq: Tallinn, Estonia
+    flag: "🇪🇪"
+    license: AGPL-3.0 (open source)
+    hosting: both
+    data_residency: EU-hosted (servers in Germany); self-host option available.
+    free_tier: 30-day trial; free forever if you self-host.
+    paid_from: Cloud from $9/mo (10k monthly pageviews).
+    best_for: Teams who want a lightweight, cookie-less, GDPR-friendly GA replacement.
+    notes: >
+      Open source, no cookies, no personal data collection. Script is tiny; runs
+      on EU infrastructure or your own server.
+    alternative_to:
+      - Google Analytics
+    sources:
+      - url: https://plausible.io/#pricing
+        verified: 2026-07-06

@@ -1,0 +1,30 @@
+category:
+  slug: communication
+  name: Team communication
+  description: >
+    Team chat and messaging instead of Slack or Microsoft Teams.
+  alternative_to:
+    - Slack
+    - Microsoft Teams
+  updated: 2026-07-06
+
+tools:
+  - name: Element
+    url: https://element.io/
+    hq: London, United Kingdom
+    flag: "🇬🇧"
+    license: Apache-2.0 (open source)
+    hosting: both
+    data_residency: Self-host the Matrix server anywhere, or use their hosted service.
+    free_tier: Free and open source when self-hosted.
+    paid_from: Hosted / enterprise plans priced per use.
+    best_for: Organisations that want decentralised, end-to-end encrypted chat they can fully control.
+    notes: >
+      Built on the open Matrix protocol; federated and E2E-encrypted. Popular
+      with governments and the public sector for data control.
+    alternative_to:
+      - Slack
+      - Microsoft Teams
+    sources:
+      - url: https://element.io/pricing
+        verified: 2026-07-06

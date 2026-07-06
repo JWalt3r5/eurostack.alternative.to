@@ -1,0 +1,32 @@
+category:
+  slug: cloud-storage
+  name: Cloud storage
+  description: >
+    File sync and storage hosted in Europe instead of Google Drive, Dropbox or OneDrive.
+  alternative_to:
+    - Google Drive
+    - Dropbox
+    - OneDrive
+  updated: 2026-07-06
+
+tools:
+  - name: pCloud
+    url: https://www.pcloud.com/
+    hq: Baar, Switzerland
+    flag: "🇨🇭"
+    license: Proprietary
+    hosting: cloud
+    data_residency: Choose EU (Luxembourg) or US data region; Swiss company.
+    free_tier: Free — up to 10 GB.
+    paid_from: Premium plans monthly/annual, plus one-off lifetime plans.
+    best_for: People who want a simple Dropbox-style drive with an EU data region and lifetime option.
+    notes: >
+      Client-side encryption available as an add-on (pCloud Crypto). Well-known
+      for its pay-once lifetime storage plans.
+    alternative_to:
+      - Dropbox
+      - Google Drive
+      - OneDrive
+    sources:
+      - url: https://www.pcloud.com/cloud-storage-pricing-plans.html
+        verified: 2026-07-06
