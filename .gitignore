@@ -9,3 +9,14 @@ node_modules/
 
 # Private local notes (persona/identity setup) — never publish
 .claude/
+
+# Other AI assistant / editor local dirs — never publish
+.cursor/
+.windsurf/
+.continue/
+.codeium/
+.gemini/
+.cline/
+.roo/
+.aider*
+.qodo/
