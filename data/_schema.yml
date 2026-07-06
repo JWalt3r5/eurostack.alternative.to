@@ -14,6 +14,8 @@
 #     url: <official site>                       # required — PRIMARY source, never a directory
 #     hq: <City, Country | "Community (FOSS)">   # where it's built/based
 #     flag: <emoji or "">                        # display only; omit for nationless FOSS
+#     logo: <url>                                  # OPTIONAL — logo image URL, shown
+#                                                  #   top-right of the name on the product page
 #     license: <Proprietary | Apache-2.0 | Source-available | ...>
 #     hosting: <cloud | self-hosted | both>
 #     data_residency: <one short honest note>    # the "where is my data" answer

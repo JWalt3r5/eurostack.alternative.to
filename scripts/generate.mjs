@@ -70,7 +70,10 @@ section.cat h2{font-size:24px;margin:0 0 6px;letter-spacing:-.01em}
 .price{font-size:14px}.price .free{color:#1a7f37;font-weight:600}
 .notes{font-size:14px;color:var(--muted);margin:0}
 .card .go{margin-top:auto;font-weight:600;font-size:14px}
-.linkrow{display:flex;flex-wrap:wrap;gap:14px;margin:6px 0}
+.linkrow{display:flex;flex-direction:column;align-items:flex-start;gap:8px;margin:10px 0}
+.prodhead{display:flex;align-items:flex-start;justify-content:space-between;gap:20px}
+.prodhead h1{margin:0}
+.logo{height:56px;max-width:180px;object-fit:contain;flex:none}
 .crumb{padding:20px 0 0;font-size:14px;color:var(--muted)}
 .prose{max-width:70ch}.prose li{margin:6px 0}
 .dl{display:grid;grid-template-columns:150px 1fr;gap:8px 18px;margin:18px 0;font-size:15px}
@@ -226,7 +229,7 @@ ${catSection(c)}
     const alt = (t.alternative_to || c.alternative_to || []).join(', ');
     const body = `<main class="wrap">
 <div class="crumb"><a href="/">Home</a> › <a href="/${esc(c.slug)}/">${esc(c.name)}</a> › ${esc(t.name)}</div>
-<div class="hero"><h1>${esc(t.name)}</h1>${t.notes ? `<p>${esc(t.notes.trim())}</p>` : ''}</div>
+<div class="hero"><div class="prodhead"><h1>${esc(t.name)}</h1>${t.logo ? `<img class="logo" src="${esc(t.logo)}" alt="${esc(t.name)} logo" loading="lazy" referrerpolicy="no-referrer">` : ''}</div>${t.notes ? `<p>${esc(t.notes.trim())}</p>` : ''}</div>
 <div class="linkrow">${toolLinks(t)}</div>
 <dl class="dl">
 ${t.hq ? `<dt>Based in</dt><dd>${esc(t.hq)}</dd>` : ''}
