@@ -1,0 +1,39 @@
+  category:
+    slug: cdn
+    name: CDN & edge
+    description: >
+      Content delivery and edge caching instead of Cloudflare, Fastly or Akamai.
+    alternative_to:
+      - Cloudflare
+      - Fastly
+      - Akamai
+    updated: 2026-07-06
+
+  tools:
+    - name: Bunny.net
+      url: https://bunny.net/
+      hq: Ljubljana, Slovenia
+      flag: "🇸🇮"
+      license: Proprietary
+      hosting: cloud
+      data_residency: Slovenian company (BunnyWay d.o.o.); global edge network
+  with EU regions.
+      free_tier: No free tier, but very low pay-as-you-go pricing.
+      paid_from: CDN from $0.01/GB, with a $1/mo minimum.
+      best_for: Sites and apps that want a fast, cheap CDN and edge storage from a
+  European provider.
+      notes: >
+        Global CDN plus edge storage, optimizer and video delivery. Known for
+        simple, transparent, low pricing.
+      links:
+        - label: Pricing
+          url: https://bunny.net/pricing/
+        - label: Docs
+          url: https://docs.bunny.net/
+      alternative_to:
+        - Cloudflare
+        - Fastly
+        - Akamai
+      sources:
+        - url: https://bunny.net/pricing/
+          verified: 2026-07-06
