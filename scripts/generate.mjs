@@ -3,7 +3,7 @@
 //   index.html (with client-side search), <slug>/ per category,
 //   <slug>/<tool>/ per product, how-to-add/, sitemap.xml, robots.txt, llms.txt
 // Zero framework — plain Node + js-yaml. Independent look (NOT the Buddy design system).
-import { readFileSync, readdirSync, mkdirSync, writeFileSync, rmSync } from 'node:fs';
+import { readFileSync, readdirSync, mkdirSync, writeFileSync, rmSync, cpSync, existsSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import yaml from 'js-yaml';
@@ -131,7 +131,7 @@ ${extraHead}
 <body>
 <header class="site"><div class="wrap"><a class="brand" href="/"><b>euro</b>stack<span style="color:var(--muted)">.alternative.to</span></a><nav class="nav"><a href="/how-to-add/">How to add</a><a href="https://github.com/JWalt3r5/eurostack.alternative.to">GitHub</a></nav></div></header>
 ${body}
-<footer class="site"><div class="wrap">Community-maintained list of European alternatives. No affiliate links, no pay-for-ranking. Last updated ${UPDATED}. · <a href="/how-to-add/">How to add a tool</a> · <a href="https://github.com/JWalt3r5/eurostack.alternative.to">GitHub</a></div></footer>
+<footer class="site"><div class="wrap">Community-maintained list of European alternatives. No affiliate links, no pay-for-ranking. Last updated ${UPDATED}. · <a href="/about/">About</a> · <a href="/how-to-add/">How to add a tool</a> · <a href="https://github.com/JWalt3r5/eurostack.alternative.to">GitHub</a></div></footer>
 </body>
 </html>`;
 }
@@ -340,9 +340,54 @@ writeFileSync(
   })
 );
 
+// about / methodology page — provenance & E-E-A-T via the open project, not a person
+const REPO = 'https://github.com/JWalt3r5/eurostack.alternative.to';
+const about = `<main class="wrap">
+<div class="crumb"><a href="/">Home</a> › About</div>
+<div class="hero"><h1>About EuroStack</h1><p>A community-maintained catalog of European-built and European-hosted alternatives to the US SaaS and cloud tools most teams reach for by default — sorted by category, with where each tool is hosted and what it costs.</p></div>
+<div class="prose">
+<h2>Who maintains this</h2>
+<p>EuroStack is an open, community-run project, not a company and not sponsored by any tool listed here. The catalog and everything behind it are public on <a href="${REPO}" rel="noopener">GitHub</a> — the data, the change history, and every contributor are visible and auditable. Corrections and additions come in through public pull requests.</p>
+<h2>How tools are chosen</h2>
+<ul>
+<li><b>European by substance</b> — the company is based in Europe, or the service is genuinely European-hosted with data kept in the EU/EEA (or Switzerland).</li>
+<li><b>A real like-for-like alternative</b> — it does the same job as the US tool it's listed against, not a loose relative.</li>
+<li><b>Honestly positioned</b> — trade-offs and limits are stated, not hidden.</li>
+</ul>
+<h2>How we keep it honest</h2>
+<ul>
+<li><b>Primary sources only.</b> Every price, free tier and claim links to the tool's own official site or pricing page, with the date we verified it — never another directory.</li>
+<li><b>No affiliate links, no pay-for-ranking.</b> Nobody can buy a place or a position on this list.</li>
+<li><b>Open data.</b> The catalog lives in plain <code>data/*.yml</code> files on GitHub; anyone can read the source, check a fact, or fix it.</li>
+<li><b>Reviewed publishing.</b> Contributions are validated automatically and reviewed by a maintainer — nothing goes live on its own.</li>
+</ul>
+<h2>Contribute</h2>
+<p>Spot something out of date, or know a European tool we're missing? <a href="/how-to-add/">Add or edit a tool</a> — it takes a single data file and a pull request.</p>
+</div>
+</main>`;
+mkdirSync(join(DIST, 'about'), { recursive: true });
+writeFileSync(
+  join(DIST, 'about', 'index.html'),
+  shell({
+    title: 'About — how EuroStack is made — EuroStack',
+    desc: 'EuroStack is an open, community-maintained catalog of European alternatives to US SaaS and cloud tools: primary sources only, no affiliate links, open data on GitHub.',
+    canonical: `${SITE}/about/`,
+    body: about,
+    jsonld: {
+      '@context': 'https://schema.org',
+      '@type': 'Organization',
+      name: 'EuroStack',
+      url: SITE + '/',
+      description: 'A community-maintained catalog of European alternatives to US SaaS and cloud tools.',
+      sameAs: [REPO],
+    },
+  })
+);
+
 // sitemap + robots + llms.txt
 const urls = [
   SITE + '/',
+  `${SITE}/about/`,
   `${SITE}/how-to-add/`,
   ...categories.map((c) => `${SITE}/${c.slug}/`),
   ...canonicalTools.map((t) => `${SITE}${t.page}`),
