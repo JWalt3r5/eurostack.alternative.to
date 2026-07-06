@@ -259,8 +259,11 @@ ${(t.sources || []).length ? `<p class="src">Sources: ${t.sources.map((s) => `<a
 // how-to-add page
 const howto = `<main class="wrap">
 <div class="crumb"><a href="/">Home</a> › How to add</div>
-<div class="hero"><h1>How to add or edit a tool</h1><p>The catalog is data-driven and open. You don't edit HTML — you edit a data file and open a pull request.</p></div>
+<div class="hero"><h1>How to add or edit a tool</h1><p>The catalog is data-driven and open. There are two ways to contribute — pick whichever suits you.</p></div>
 <div class="prose">
+<h2>1. Suggest a tool (the easy way)</h2>
+<p>Not comfortable with Git? <a href="https://github.com/JWalt3r5/eurostack.alternative.to/issues/new?template=suggest-a-tool.yml">Open an issue</a> with the tool's name, website, where it's based and what it costs. A maintainer will add it.</p>
+<h2>2. Open a pull request (the direct way)</h2>
 <ol>
 <li>Fork <a href="https://github.com/JWalt3r5/eurostack.alternative.to">the repository</a> on GitHub.</li>
 <li>Open the category file under <code>data/</code> (for example <code>data/email.yml</code>), or create a new one if the category doesn't exist yet.</li>

@@ -1,0 +1,53 @@
+name: Suggest a tool
+description: Suggest a European alternative to add to the catalog
+title: "[Tool] <name>"
+labels: ["suggestion"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for suggesting a tool! European-built or European-hosted only, please.
+        A maintainer will review and add it — you don't need to open a pull request.
+  - type: input
+    id: name
+    attributes:
+      label: Tool name
+      placeholder: e.g. Bunny.net
+    validations:
+      required: true
+  - type: input
+    id: url
+    attributes:
+      label: Official website
+      placeholder: https://…
+    validations:
+      required: true
+  - type: input
+    id: category
+    attributes:
+      label: Category
+      description: Which category does it belong to? (e.g. CDN, email, CI/CD)
+    validations:
+      required: true
+  - type: input
+    id: hq
+    attributes:
+      label: Where is it based / hosted?
+      placeholder: e.g. Ljubljana, Slovenia
+    validations:
+      required: true
+  - type: input
+    id: pricing
+    attributes:
+      label: Pricing (free tier / paid from)
+      placeholder: e.g. Free tier; paid from $1/mo
+  - type: input
+    id: alternative_to
+    attributes:
+      label: Which US tool is it an alternative to?
+      placeholder: e.g. Cloudflare, Fastly
+  - type: textarea
+    id: notes
+    attributes:
+      label: Anything else?
+      description: Licence, self-hosting, data residency, why it's a good pick — and a source link if you have one.

@@ -1,7 +1,7 @@
 # Buddy pipeline (1/2) — eurostack.alternative.to
-# verify-data: runs automatically on every push to the FIXED `main` ref.
-# Validates the catalog data (schema, dead links, duplicates). Never publishes —
-# this is the quality gate for pull requests. Build & publish is pipeline2.
+# verify-data: runs automatically on push to `main` AND on pull requests
+# targeting `main`. Validates the catalog data (schema, duplicates, links) so a
+# PR gets a check before merge. Never publishes — build & publish is pipeline2.
 - pipeline: verify-data
   name: Verify data
   on: EVENT
@@ -11,6 +11,13 @@
   - type: PUSH
     refs:
     - refs/heads/main
+  - type: PULL_REQUEST
+    events:
+    - OPENED
+    - SYNCHRONIZED
+    - REOPENED
+    branches:
+    - main
   actions:
   - action: Validate catalog data
     type: BUILD
