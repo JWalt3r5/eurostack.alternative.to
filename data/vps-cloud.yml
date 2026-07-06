@@ -11,7 +11,7 @@ category:
 
 tools:
   - name: Hetzner
-    categories: [web-hosting]   # one provider, two jobs — canonical page lives here (vps-cloud)
+    categories: [web-hosting]   # one provider, two jobs - canonical page lives here (vps-cloud)
     url: https://www.hetzner.com/cloud
     hq: Gunzenhausen, Germany
     flag: "🇩🇪"

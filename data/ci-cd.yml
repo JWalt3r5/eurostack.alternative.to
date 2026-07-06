@@ -2,7 +2,7 @@ category:
   slug: ci-cd
   name: CI/CD
   description: >
-    Build, test and deploy pipelines — the European engines you can run instead
+    Build, test and deploy pipelines - the European engines you can run instead
     of the big US CI services. Where each one is hosted, and what it costs.
   alternative_to:
     - GitHub Actions
@@ -42,7 +42,7 @@ tools:
     license: Proprietary (free Professional tier)
     hosting: both
     data_residency: Fully self-hostable on your own infrastructure; cloud option also available. Built by JetBrains (EU).
-    free_tier: Professional (self-hosted) is free — 3 build agents, 100 build configurations.
+    free_tier: Professional (self-hosted) is free - 3 build agents, 100 build configurations.
     paid_from: Cloud from $45/committer/mo · Enterprise on-prem $2,399/yr.
     best_for: Teams that want a powerful self-hosted CI from an established European vendor.
     notes: >
@@ -65,10 +65,10 @@ tools:
     flag: ""
     license: Apache-2.0
     hosting: self-hosted
-    data_residency: Fully self-hosted — your data never leaves your own servers.
+    data_residency: Fully self-hosted - your data never leaves your own servers.
     free_tier: Free and open source; no license cost.
     paid_from: "—"
-    best_for: Lightweight self-hosted CI for Gitea, Forgejo or GitHub — minimal footprint.
+    best_for: Lightweight self-hosted CI for Gitea, Forgejo or GitHub - minimal footprint.
     notes: >
       Community fork of Drone (from before Drone changed its licence), Apache-2.0,
       server + agent run in under ~50 MB RAM. Actively maintained.

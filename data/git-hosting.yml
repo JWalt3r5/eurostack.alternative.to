@@ -3,7 +3,7 @@ category:
   name: Git hosting
   description: >
     Hosted Git repositories, issues and code review instead of GitHub or
-    GitLab.com — European-run forges where your code and its metadata stay
+    GitLab.com - European-run forges where your code and its metadata stay
     in the EU, without ads, tracking or lock-in.
   alternative_to:
     - GitHub
@@ -28,7 +28,7 @@ tools:
       ad-free Git host under EU jurisdiction.
     notes: >
       Non-profit, donation-funded Git hosting powered by Forgejo (a community
-      soft-fork of Gitea). No tracking, no ads and no venture-capital pressure —
+      soft-fork of Gitea). No tracking, no ads and no venture-capital pressure -
       it is governed by a registered German association rather than a company,
       which makes its long-term incentives very different from the big
       commercial forges. Includes issues, pull requests, a package registry

@@ -16,7 +16,7 @@ tools:
     license: AGPL-3.0 (open source)
     hosting: both
     data_residency: Self-host on your own servers, or use their EU cloud.
-    free_tier: Free — Community/Personal edition; self-hosting is free.
+    free_tier: Free - Community/Personal edition; self-hosting is free.
     paid_from: Paid cloud and enterprise plans available.
     best_for: Teams wanting a self-hostable office suite with strong MS Office format compatibility.
     notes: >

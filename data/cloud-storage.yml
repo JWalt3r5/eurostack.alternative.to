@@ -17,7 +17,7 @@ tools:
     license: Proprietary
     hosting: cloud
     data_residency: Choose EU (Luxembourg) or US data region; Swiss company.
-    free_tier: Free — up to 10 GB.
+    free_tier: Free - up to 10 GB.
     paid_from: Premium plans monthly/annual, plus one-off lifetime plans.
     best_for: People who want a simple Dropbox-style drive with an EU data region and lifetime option.
     notes: >
@@ -32,19 +32,19 @@ tools:
         verified: 2026-07-06
 
   - name: Nextcloud
-    categories: [office-productivity]   # one product, two jobs — canonical page lives here (cloud-storage)
+    categories: [office-productivity]   # one product, two jobs - canonical page lives here (cloud-storage)
     url: https://nextcloud.com/
     hq: Stuttgart, Germany
     flag: "🇩🇪"
     license: AGPL-3.0 (open source)
     hosting: both
     data_residency: Self-host on servers you control, or managed "Nextcloud One" hosting in Germany (GDPR).
-    free_tier: Free — self-hosting the open-source server has no licence cost.
+    free_tier: Free - self-hosting the open-source server has no licence cost.
     paid_from: Enterprise support from ~€71/user/yr (100+ users); managed Nextcloud One for smaller teams.
     best_for: Teams who want to self-host files, documents and calls in the EU instead of a US cloud suite.
     notes: >
       Open-source platform: file sync and share, plus Nextcloud Office
-      (documents), Talk (calls) and Calendar — a Google Workspace / Microsoft
+      (documents), Talk (calls) and Calendar - a Google Workspace / Microsoft
       365 replacement you can run yourself. Made by Nextcloud GmbH.
     links:
       - {label: Pricing, url: https://nextcloud.com/pricing/}

@@ -2,7 +2,7 @@
 // Reads data/*.yml (one category each) and renders dist/:
 //   index.html (with client-side search), <slug>/ per category,
 //   <slug>/<tool>/ per product, how-to-add/, sitemap.xml, robots.txt, llms.txt
-// Zero framework — plain Node + js-yaml. Independent look (NOT the Buddy design system).
+// Zero framework - plain Node + js-yaml. Independent look (NOT the Buddy design system).
 import { readFileSync, readdirSync, mkdirSync, writeFileSync, rmSync, cpSync, existsSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -23,7 +23,7 @@ const slugify = (s = '') =>
 // ---- load categories + tools ----------------------------------------------
 // Each tool is authored once, in its home category file. Optional `categories:`
 // lists every category it belongs to; the home file (where it's authored) stays
-// its CANONICAL category — the single product page lives at /<homeCat>/<tool>/.
+// its CANONICAL category - the single product page lives at /<homeCat>/<tool>/.
 // Any extra categories only cross-list a card that links back to that one page,
 // so a multi-category service never duplicates content or its product URL.
 const rawCategories = readdirSync(DATA)
@@ -126,11 +126,11 @@ function shell({ title, desc, canonical, body, jsonld, extraHead = '' }) {
 <meta property="og:image" content="${SITE}/og2.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="EuroStack — European alternatives to US SaaS &amp; cloud tools">
+<meta property="og:image:alt" content="EuroStack - European alternatives to US SaaS &amp; cloud tools">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="${SITE}/og2.png">
 <style>${CSS}</style>
-${jsonld ? `<script type="application/ld+json">${JSON.stringify(jsonld)}</script>` : ''}
+${(Array.isArray(jsonld) ? jsonld : jsonld ? [jsonld] : []).filter(Boolean).map((j) => `<script type="application/ld+json">${JSON.stringify(j)}</script>`).join('\n')}
 ${ANALYTICS}
 ${extraHead}
 </head>
@@ -156,7 +156,7 @@ function toolCard(t, catName) {
 ${t.hq ? `<div class="hq">${esc(t.hq)}</div>` : ''}
 <div class="badges">${badges}</div>
 ${t.data_residency ? `<p class="notes">${esc(t.data_residency)}</p>` : ''}
-<div class="price">${free ? `<span class="free">Free</span> — ${esc(t.free_tier)}` : esc(t.free_tier || '')}${t.paid_from && t.paid_from !== '—' ? `<br>Paid: ${esc(t.paid_from)}` : ''}</div>
+<div class="price">${free ? `<span class="free">Free</span> - ${esc(t.free_tier)}` : esc(t.free_tier || '')}${t.paid_from && t.paid_from !== '—' ? `<br>Paid: ${esc(t.paid_from)}` : ''}</div>
 ${t.notes ? `<p class="notes">${esc(t.notes.trim())}</p>` : ''}
 <span class="go">Details →</span>
 </a>`;
@@ -178,6 +178,13 @@ function toolLinks(t) {
   const links = [{ label: 'Website', url: t.url }, ...((t.links || []).slice(0, 4))].filter((l) => l && l.url);
   return links.map((l) => `<a href="${esc(l.url)}" rel="nofollow noopener" target="_blank">${esc(l.label || l.url)} →</a>`).join('');
 }
+
+// BreadcrumbList JSON-LD from [{name, url}, ...] (mirrors the visible crumb)
+const crumbLd = (items) => ({
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: items.map((it, i) => ({ '@type': 'ListItem', position: i + 1, name: it.name, item: it.url })),
+});
 
 // ---- render ----------------------------------------------------------------
 rmSync(DIST, { recursive: true, force: true });
@@ -201,7 +208,7 @@ const toc = categories.map((c) => `<a href="#${esc(c.slug)}">${esc(c.name)}</a>`
 const home = `<main class="wrap">
 <div class="hero">
 <h1>European alternatives to the US tools you use by default</h1>
-<p>Email, storage, hosting, CI/CD and more — the European-built services that do the same job, with where each one is hosted and what it costs.</p>
+<p>Email, storage, hosting, CI/CD and more - the European-built services that do the same job, with where each one is hosted and what it costs.</p>
 <div class="meta">${totalTools} tools across ${categories.length} categories · updated ${UPDATED}</div>
 <div class="search"><input id="q" type="search" placeholder="Search tools, categories, countries…" autocomplete="off" aria-label="Search"></div>
 <div class="toc">${toc}</div>
@@ -212,7 +219,7 @@ ${categories.map((c) => catSection(c, { linkHeading: true })).join('')}
 writeFileSync(
   join(DIST, 'index.html'),
   shell({
-    title: 'European alternatives to US SaaS & cloud tools — EuroStack',
+    title: 'European alternatives to US SaaS & cloud tools | EuroStack',
     desc: `A community list of ${totalTools} European alternatives to popular US software, sorted by category, with hosting location and pricing.`,
     canonical: SITE + '/',
     body: home,
@@ -238,21 +245,27 @@ ${catSection(c)}
   writeFileSync(
     join(DIST, c.slug, 'index.html'),
     shell({
-      title: `European ${c.name} alternatives — EuroStack`,
+      title: `European ${c.name} alternatives | EuroStack`,
       desc: `European alternatives to ${(c.alternative_to || []).join(', ') || 'US ' + c.name.toLowerCase() + ' tools'}, with hosting location and pricing.`,
       canonical: `${SITE}/${c.slug}/`,
       body: catBody,
-      jsonld: {
-        '@context': 'https://schema.org',
-        '@type': 'ItemList',
-        name: `European ${c.name} alternatives`,
-        numberOfItems: c.tools.length,
-        itemListElement: c.tools.map((t, i) => ({ '@type': 'ListItem', position: i + 1, name: t.name, url: `${SITE}${t.page}` })),
-      },
+      jsonld: [
+        {
+          '@context': 'https://schema.org',
+          '@type': 'ItemList',
+          name: `European ${c.name} alternatives`,
+          numberOfItems: c.tools.length,
+          itemListElement: c.tools.map((t, i) => ({ '@type': 'ListItem', position: i + 1, name: t.name, url: `${SITE}${t.page}` })),
+        },
+        crumbLd([
+          { name: 'Home', url: SITE + '/' },
+          { name: c.name, url: `${SITE}/${c.slug}/` },
+        ]),
+      ],
     })
   );
 
-  // product pages — only for tools whose canonical (home) category is this one;
+  // product pages - only for tools whose canonical (home) category is this one;
   // cross-listed tools just render a card here that links to their one page.
   for (const t of c.tools) {
     if (t.homeCat !== c.slug) continue;
@@ -279,18 +292,25 @@ ${(t.sources || []).length ? `<p class="src">Sources: ${t.sources.map((s) => `<a
     writeFileSync(
       join(DIST, c.slug, t.slug, 'index.html'),
       shell({
-        title: `${t.name} — European ${c.name} alternative — EuroStack`,
+        title: `${t.name} | European ${c.name} alternative | EuroStack`,
         desc: `${t.name}${t.hq ? ' (' + t.hq + ')' : ''}: a European ${c.name.toLowerCase()} alternative${alt ? ' to ' + alt : ''}. ${(t.notes || '').trim()}`.slice(0, 300),
         canonical: `${SITE}${t.page}`,
         body,
-        jsonld: {
-          '@context': 'https://schema.org',
-          '@type': 'SoftwareApplication',
-          name: t.name,
-          applicationCategory: c.name,
-          url: t.url,
-          offers: free ? { '@type': 'Offer', price: '0', priceCurrency: 'EUR' } : undefined,
-        },
+        jsonld: [
+          {
+            '@context': 'https://schema.org',
+            '@type': 'SoftwareApplication',
+            name: t.name,
+            applicationCategory: c.name,
+            url: t.url,
+            offers: free ? { '@type': 'Offer', price: '0', priceCurrency: 'EUR' } : undefined,
+          },
+          crumbLd([
+            { name: 'Home', url: SITE + '/' },
+            { name: c.name, url: `${SITE}/${c.slug}/` },
+            { name: t.name, url: `${SITE}${t.page}` },
+          ]),
+        ],
       })
     );
   }
@@ -299,7 +319,7 @@ ${(t.sources || []).length ? `<p class="src">Sources: ${t.sources.map((s) => `<a
 // how-to-add page
 const howto = `<main class="wrap">
 <div class="crumb"><a href="/">Home</a> › How to add</div>
-<div class="hero"><h1>How to add or edit a tool</h1><p>The catalog is data-driven and open. There are two ways to contribute — pick whichever suits you.</p></div>
+<div class="hero"><h1>How to add or edit a tool</h1><p>The catalog is data-driven and open. There are two ways to contribute - pick whichever suits you.</p></div>
 <div class="prose">
 <h2>1. Suggest a tool (the easy way)</h2>
 <p>Not comfortable with Git? <a href="https://github.com/JWalt3r5/eurostack.alternative.to/issues/new?template=suggest-a-tool.yml">Open an issue</a> with the tool's name, website, where it's based and what it costs. A maintainer will add it.</p>
@@ -309,7 +329,7 @@ const howto = `<main class="wrap">
 <li>Open the category file under <code>data/</code> (for example <code>data/email.yml</code>), or create a new one if the category doesn't exist yet.</li>
 <li>Add a tool entry. Minimum fields: <code>name</code>, <code>url</code>, <code>hq</code>, <code>hosting</code>, <code>license</code>, a short <code>notes</code>, and at least one <code>sources</code> link. You can add up to three extra <code>links</code> (e.g. Pricing, Docs, GitHub).</li>
 <li>Open a pull request. On push, the <b>verify-data</b> check validates your entry (schema, duplicates, links).</li>
-<li>A maintainer reviews it and publishes — nothing goes live automatically.</li>
+<li>A maintainer reviews it and publishes - nothing goes live automatically.</li>
 </ol>
 <p>Rules: European-built or European-hosted tools only. Primary sources only (link the official site, never another directory). No affiliate links.</p>
 <h2>Example entry</h2>
@@ -339,54 +359,64 @@ mkdirSync(join(DIST, 'how-to-add'), { recursive: true });
 writeFileSync(
   join(DIST, 'how-to-add', 'index.html'),
   shell({
-    title: 'How to add a tool — EuroStack',
+    title: 'How to add a tool | EuroStack',
     desc: 'How to add or edit a European alternative in the EuroStack catalog: edit a YAML data file, open a pull request, and a maintainer publishes it.',
     canonical: `${SITE}/how-to-add/`,
     body: howto,
+    jsonld: crumbLd([
+      { name: 'Home', url: SITE + '/' },
+      { name: 'How to add', url: `${SITE}/how-to-add/` },
+    ]),
   })
 );
 
-// about / methodology page — provenance & E-E-A-T via the open project, not a person
+// about / methodology page - provenance & E-E-A-T via the open project, not a person
 const REPO = 'https://github.com/JWalt3r5/eurostack.alternative.to';
 const about = `<main class="wrap">
 <div class="crumb"><a href="/">Home</a> › About</div>
-<div class="hero"><h1>About EuroStack</h1><p>A community-maintained catalog of European-built and European-hosted alternatives to the US SaaS and cloud tools most teams reach for by default — sorted by category, with where each tool is hosted and what it costs.</p></div>
+<div class="hero"><h1>About EuroStack</h1><p>A community-maintained catalog of European-built and European-hosted alternatives to the US SaaS and cloud tools most teams reach for by default - sorted by category, with where each tool is hosted and what it costs.</p></div>
 <div class="prose">
 <h2>Who maintains this</h2>
-<p>EuroStack is an open, community-run project, not a company and not sponsored by any tool listed here. The catalog and everything behind it are public on <a href="${REPO}" rel="noopener">GitHub</a> — the data, the change history, and every contributor are visible and auditable. Corrections and additions come in through public pull requests.</p>
+<p>EuroStack is an open, community-run project, not a company and not sponsored by any tool listed here. The catalog and everything behind it are public on <a href="${REPO}" rel="noopener">GitHub</a> - the data, the change history, and every contributor are visible and auditable. Corrections and additions come in through public pull requests.</p>
 <h2>How tools are chosen</h2>
 <ul>
-<li><b>European by substance</b> — the company is based in Europe, or the service is genuinely European-hosted with data kept in the EU/EEA (or Switzerland).</li>
-<li><b>A real like-for-like alternative</b> — it does the same job as the US tool it's listed against, not a loose relative.</li>
-<li><b>Honestly positioned</b> — trade-offs and limits are stated, not hidden.</li>
+<li><b>European by substance</b> - the company is based in Europe, or the service is genuinely European-hosted with data kept in the EU/EEA (or Switzerland).</li>
+<li><b>A real like-for-like alternative</b> - it does the same job as the US tool it's listed against, not a loose relative.</li>
+<li><b>Honestly positioned</b> - trade-offs and limits are stated, not hidden.</li>
 </ul>
 <h2>How we keep it honest</h2>
 <ul>
-<li><b>Primary sources only.</b> Every price, free tier and claim links to the tool's own official site or pricing page, with the date we verified it — never another directory.</li>
+<li><b>Primary sources only.</b> Every price, free tier and claim links to the tool's own official site or pricing page, with the date we verified it - never another directory.</li>
 <li><b>No affiliate links, no pay-for-ranking.</b> Nobody can buy a place or a position on this list.</li>
 <li><b>Open data.</b> The catalog lives in plain <code>data/*.yml</code> files on GitHub; anyone can read the source, check a fact, or fix it.</li>
-<li><b>Reviewed publishing.</b> Contributions are validated automatically and reviewed by a maintainer — nothing goes live on its own.</li>
+<li><b>Reviewed publishing.</b> Contributions are validated automatically and reviewed by a maintainer - nothing goes live on its own.</li>
 </ul>
 <h2>Contribute</h2>
-<p>Spot something out of date, or know a European tool we're missing? <a href="/how-to-add/">Add or edit a tool</a> — it takes a single data file and a pull request.</p>
+<p>Spot something out of date, or know a European tool we're missing? <a href="/how-to-add/">Add or edit a tool</a> - it takes a single data file and a pull request.</p>
 </div>
 </main>`;
 mkdirSync(join(DIST, 'about'), { recursive: true });
 writeFileSync(
   join(DIST, 'about', 'index.html'),
   shell({
-    title: 'About — how EuroStack is made — EuroStack',
+    title: 'About | how EuroStack is made | EuroStack',
     desc: 'EuroStack is an open, community-maintained catalog of European alternatives to US SaaS and cloud tools: primary sources only, no affiliate links, open data on GitHub.',
     canonical: `${SITE}/about/`,
     body: about,
-    jsonld: {
-      '@context': 'https://schema.org',
-      '@type': 'Organization',
-      name: 'EuroStack',
-      url: SITE + '/',
-      description: 'A community-maintained catalog of European alternatives to US SaaS and cloud tools.',
-      sameAs: [REPO],
-    },
+    jsonld: [
+      {
+        '@context': 'https://schema.org',
+        '@type': 'Organization',
+        name: 'EuroStack',
+        url: SITE + '/',
+        description: 'A community-maintained catalog of European alternatives to US SaaS and cloud tools.',
+        sameAs: [REPO],
+      },
+      crumbLd([
+        { name: 'Home', url: SITE + '/' },
+        { name: 'About', url: `${SITE}/about/` },
+      ]),
+    ],
   })
 );
 
@@ -407,7 +437,7 @@ writeFileSync(
 writeFileSync(join(DIST, 'robots.txt'), `User-agent: *\nAllow: /\n\nSitemap: ${SITE}/sitemap.xml\n`);
 writeFileSync(
   join(DIST, 'llms.txt'),
-  `# EuroStack — European alternatives to US SaaS & cloud tools\n\n> A community-maintained catalog of European-built alternatives, sorted by category, with hosting location and pricing.\n\n## Categories\n\n${categories
+  `# EuroStack - European alternatives to US SaaS & cloud tools\n\n> A community-maintained catalog of European-built alternatives, sorted by category, with hosting location and pricing.\n\n## Categories\n\n${categories
     .map((c) => `- [European ${c.name} alternatives](${SITE}/${c.slug}/): ${(c.description || '').trim()}`)
     .join('\n')}\n`
 );
