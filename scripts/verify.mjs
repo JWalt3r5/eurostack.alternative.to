@@ -12,6 +12,7 @@ const seenUrls = new Map();
 
 const files = readdirSync(DATA).filter((f) => f.endsWith('.yml') && !f.startsWith('_'));
 if (!files.length) errors.push('no data/*.yml files found');
+const knownSlugs = new Set(files.map((f) => f.replace(/\.yml$/, '')));
 
 for (const f of files) {
   const slug = f.replace(/\.yml$/, '');
@@ -37,6 +38,12 @@ for (const f of files) {
     if (!t.url) errors.push(`${id}: tool.url is required`);
     else if (!/^https?:\/\//.test(t.url)) errors.push(`${id}: url must be http(s) — got "${t.url}"`);
     if (!t.sources || !t.sources.length) warns.push(`${id}: no sources cited`);
+    if (t.categories !== undefined) {
+      if (!Array.isArray(t.categories)) errors.push(`${id}: categories must be a list of category slugs`);
+      else for (const cs of t.categories) {
+        if (!knownSlugs.has(cs)) errors.push(`${id}: categories references unknown category "${cs}" (no data/${cs}.yml)`);
+      }
+    }
     if (t.url) {
       if (seenUrls.has(t.url)) warns.push(`${id}: duplicate url (also in ${seenUrls.get(t.url)})`);
       else seenUrls.set(t.url, f);

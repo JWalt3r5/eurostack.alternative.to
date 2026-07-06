@@ -11,6 +11,13 @@
 #
 # tools:                                         # the European alternatives, honest order
 #   - name: <tool name>                          # required
+#     categories: [<slug>, ...]                  # OPTIONAL — extra categories this tool
+#                                                  #   also belongs to (each must be an existing
+#                                                  #   data/<slug>.yml). The file it's authored in
+#                                                  #   stays CANONICAL: the one product page lives
+#                                                  #   at /<home>/<tool>/; other categories only show
+#                                                  #   a card linking back. Define the tool ONCE —
+#                                                  #   never copy the entry into another file.
 #     url: <official site>                       # required — PRIMARY source, never a directory
 #     hq: <City, Country | "Community (FOSS)">   # where it's built/based
 #     flag: <emoji or "">                        # display only; omit for nationless FOSS

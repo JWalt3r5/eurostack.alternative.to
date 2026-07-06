@@ -21,21 +21,41 @@ const slugify = (s = '') =>
   String(s).toLowerCase().trim().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
 
 // ---- load categories + tools ----------------------------------------------
-const categories = readdirSync(DATA)
+// Each tool is authored once, in its home category file. Optional `categories:`
+// lists every category it belongs to; the home file (where it's authored) stays
+// its CANONICAL category — the single product page lives at /<homeCat>/<tool>/.
+// Any extra categories only cross-list a card that links back to that one page,
+// so a multi-category service never duplicates content or its product URL.
+const rawCategories = readdirSync(DATA)
   .filter((f) => f.endsWith('.yml') && !f.startsWith('_'))
   .map((f) => {
     const doc = yaml.load(readFileSync(join(DATA, f), 'utf8')) || {};
     const cat = doc.category || {};
     const slug = cat.slug || f.replace(/\.yml$/, '');
-    const tools = (doc.tools || []).map((t) => {
-      const tslug = slugify(t.name);
-      return { ...t, slug: tslug, page: `/${slug}/${tslug}/` };
-    });
-    return { ...cat, slug, tools };
-  })
+    return { cat: { ...cat, slug }, slug, rawTools: doc.tools || [] };
+  });
+
+const knownSlugs = new Set(rawCategories.map((c) => c.slug));
+const canonicalTools = [];               // one entry per tool (product pages, counts)
+const listingsByCat = new Map(rawCategories.map((c) => [c.slug, []]));
+
+for (const c of rawCategories) {
+  for (const raw of c.rawTools) {
+    const slug = slugify(raw.name);
+    const tool = { ...raw, slug, homeCat: c.slug, page: `/${c.slug}/${slug}/` };
+    canonicalTools.push(tool);
+    const memberOf = new Set([c.slug, ...((raw.categories || []).filter((s) => knownSlugs.has(s)))]);
+    for (const cs of memberOf) listingsByCat.get(cs).push(tool);
+  }
+}
+// keep a category's own (canonical) tools first, cross-listed ones after
+for (const [cs, list] of listingsByCat) list.sort((a, b) => (a.homeCat === cs ? 0 : 1) - (b.homeCat === cs ? 0 : 1));
+
+const categories = rawCategories
+  .map((c) => ({ ...c.cat, tools: listingsByCat.get(c.slug) }))
   .sort((a, b) => a.name.localeCompare(b.name));
 
-const totalTools = categories.reduce((n, c) => n + c.tools.length, 0);
+const totalTools = canonicalTools.length;
 
 // ---- styles ----------------------------------------------------------------
 const CSS = `
@@ -226,8 +246,10 @@ ${catSection(c)}
     })
   );
 
-  // product pages
+  // product pages — only for tools whose canonical (home) category is this one;
+  // cross-listed tools just render a card here that links to their one page.
   for (const t of c.tools) {
+    if (t.homeCat !== c.slug) continue;
     mkdirSync(join(DIST, c.slug, t.slug), { recursive: true });
     const free = t.free_tier && t.free_tier !== '—';
     const alt = (t.alternative_to || c.alternative_to || []).join(', ');
@@ -323,7 +345,7 @@ const urls = [
   SITE + '/',
   `${SITE}/how-to-add/`,
   ...categories.map((c) => `${SITE}/${c.slug}/`),
-  ...categories.flatMap((c) => c.tools.map((t) => `${SITE}${t.page}`)),
+  ...canonicalTools.map((t) => `${SITE}${t.page}`),
 ];
 writeFileSync(
   join(DIST, 'sitemap.xml'),
