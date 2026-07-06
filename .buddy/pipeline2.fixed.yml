@@ -2,8 +2,6 @@
   name: Build & publish eurostack.alternative.to
   refs:
   - refs/heads/main
-  events:
-  - type: PUSH
   actions:
   - action: Build site
     type: BUILD
