@@ -116,6 +116,10 @@ function shell({ title, desc, canonical, body, jsonld, extraHead = '' }) {
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="google-site-verification" content="BQGNLeFC-c27dGx5uOFTNH9UQjLKhLqb_2qn-JWwkLc">
 <meta name="msvalidate.01" content="7632340AF6F68FEE312A0396A4D03BB8">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#1a48d6">
 <title>${esc(title)}</title>
 <meta name="description" content="${esc(desc)}">
 <link rel="canonical" href="${esc(canonical)}">

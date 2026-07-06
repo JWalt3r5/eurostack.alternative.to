@@ -12,9 +12,8 @@ The catalog is **data-driven**. You don't edit HTML — you edit data.
 
 ```
 data/            source of truth: one YAML file per category
-templates/       HTML templates (design-system tokens)
 scripts/verify   validates the data (schema, dead links, duplicates)
-scripts/build    renders data/ + templates/ -> dist/
+scripts/build    renders data/ -> dist/
 dist/            generated site (built in CI, not committed)
 ```
 
