@@ -1,6 +1,6 @@
+<!-- HEADER -->
 <div align="center">
   <img src="static/og2.png" alt="European alternatives">
-  <h1>eurostack.alternative.to</h1>
   <br><br>
 </div>
 
