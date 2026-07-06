@@ -12,6 +12,7 @@ const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const DATA = join(ROOT, 'data');
 const DIST = join(ROOT, 'dist');
 const SITE = 'https://eurostack.alternative.to';
+const ANALYTICS = '<script defer src="https://wiadro.24h.sh/script.js" data-website-id="c8478936-c06f-4d99-b934-a939766e4340"></script>';
 const UPDATED = new Date().toISOString().slice(0, 10);
 
 const esc = (s = '') =>
@@ -93,6 +94,8 @@ function shell({ title, desc, canonical, body, jsonld, extraHead = '' }) {
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="google-site-verification" content="BQGNLeFC-c27dGx5uOFTNH9UQjLKhLqb_2qn-JWwkLc">
+<meta name="msvalidate.01" content="7632340AF6F68FEE312A0396A4D03BB8">
 <title>${esc(title)}</title>
 <meta name="description" content="${esc(desc)}">
 <link rel="canonical" href="${esc(canonical)}">
@@ -102,6 +105,7 @@ function shell({ title, desc, canonical, body, jsonld, extraHead = '' }) {
 <meta property="og:url" content="${esc(canonical)}">
 <style>${CSS}</style>
 ${jsonld ? `<script type="application/ld+json">${JSON.stringify(jsonld)}</script>` : ''}
+${ANALYTICS}
 ${extraHead}
 </head>
 <body>
