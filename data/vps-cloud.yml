@@ -11,6 +11,7 @@ category:
 
 tools:
   - name: Hetzner
+    categories: [web-hosting]   # one provider, two jobs — canonical page lives here (vps-cloud)
     url: https://www.hetzner.com/cloud
     hq: Gunzenhausen, Germany
     flag: "🇩🇪"
@@ -21,8 +22,8 @@ tools:
     paid_from: Cloud VPS from roughly €4/mo.
     best_for: Developers who want a lot of compute for very little money, hosted in the EU.
     notes: >
-      Well-known for cheap, reliable VPS and dedicated servers. EU data centres
-      by default; simple pricing.
+      Well-known for cheap, reliable VPS and dedicated servers, and also offers
+      managed web hosting. EU data centres by default; simple pricing.
     alternative_to:
       - AWS EC2
       - Google Cloud
