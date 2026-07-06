@@ -1,0 +1,53 @@
+category:
+  slug: git-hosting
+  name: Git hosting
+  description: >
+    Hosted Git repositories, issues and code review instead of GitHub or
+    GitLab.com — European-run forges where your code and its metadata stay
+    in the EU, without ads, tracking or lock-in.
+  alternative_to:
+    - GitHub
+    - GitLab.com
+  updated: 2026-07-06
+
+tools:
+  - name: Codeberg
+    url: https://codeberg.org/
+    logo: https://codeberg.org/assets/img/logo.svg
+    hq: Berlin, Germany
+    flag: "🇩🇪"
+    license: Open source (Forgejo, GPLv3+)
+    hosting: cloud
+    data_residency: >
+      Run by Codeberg e.V., a registered non-profit association based in
+      Germany; servers hosted in the EU.
+    free_tier: Free for open-source projects; funded by donations, no paid tiers.
+    paid_from: "—"
+    best_for: >
+      Open-source and privacy-minded developers who want a community-run,
+      ad-free Git host under EU jurisdiction.
+    notes: >
+      Non-profit, donation-funded Git hosting powered by Forgejo (a community
+      soft-fork of Gitea). No tracking, no ads and no venture-capital pressure —
+      it is governed by a registered German association rather than a company,
+      which makes its long-term incentives very different from the big
+      commercial forges. Includes issues, pull requests, a package registry
+      and Forgejo Actions for CI.
+    links:
+      - label: Docs
+        url: https://docs.codeberg.org/
+      - label: Forgejo (the software)
+        url: https://forgejo.org/
+      - label: Blog
+        url: https://blog.codeberg.org/
+      - label: Community
+        url: https://codeberg.org/Codeberg/Community
+    alternative_to:
+      - GitHub
+      - GitLab.com
+      - Bitbucket
+    sources:
+      - url: https://docs.codeberg.org/
+        verified: 2026-07-06
+      - url: https://codeberg.org/
+        verified: 2026-07-06
