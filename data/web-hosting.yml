@@ -1,0 +1,30 @@
+category:
+  slug: web-hosting
+  name: Web hosting
+  description: >
+    Managed web and application hosting instead of GoDaddy or US shared hosts.
+  alternative_to:
+    - GoDaddy
+    - Bluehost
+  updated: 2026-07-06
+
+tools:
+  - name: Infomaniak
+    url: https://www.infomaniak.com/
+    hq: Geneva, Switzerland
+    flag: "🇨🇭"
+    license: Proprietary
+    hosting: cloud
+    data_residency: Data stays in Switzerland; runs on its own green data centres.
+    free_tier: Free tiers on some products (e.g. kSuite / kDrive); paid hosting.
+    paid_from: Web hosting plans from a few euros per month.
+    best_for: Businesses wanting privacy-focused, environmentally responsible hosting in Switzerland.
+    notes: >
+      Independent Swiss provider (hosting, mail, kDrive storage, kSuite). Strong
+      privacy and sustainability positioning.
+    alternative_to:
+      - GoDaddy
+      - Bluehost
+    sources:
+      - url: https://www.infomaniak.com/en/hosting/web-hosting
+        verified: 2026-07-06

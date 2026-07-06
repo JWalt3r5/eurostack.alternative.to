@@ -1,0 +1,32 @@
+category:
+  slug: vps-cloud
+  name: VPS & cloud compute
+  description: >
+    Virtual servers and cloud compute instead of AWS EC2, Google Cloud or DigitalOcean.
+  alternative_to:
+    - AWS EC2
+    - Google Cloud
+    - DigitalOcean
+  updated: 2026-07-06
+
+tools:
+  - name: Hetzner
+    url: https://www.hetzner.com/cloud
+    hq: Gunzenhausen, Germany
+    flag: "🇩🇪"
+    license: Proprietary
+    hosting: cloud
+    data_residency: Data centres in Germany and Finland (plus US regions if you choose).
+    free_tier: No free tier, but famously low prices.
+    paid_from: Cloud VPS from roughly €4/mo.
+    best_for: Developers who want a lot of compute for very little money, hosted in the EU.
+    notes: >
+      Well-known for cheap, reliable VPS and dedicated servers. EU data centres
+      by default; simple pricing.
+    alternative_to:
+      - AWS EC2
+      - Google Cloud
+      - DigitalOcean
+    sources:
+      - url: https://www.hetzner.com/cloud
+        verified: 2026-07-06

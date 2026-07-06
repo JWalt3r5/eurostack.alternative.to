@@ -1,0 +1,30 @@
+category:
+  slug: ai-assistants
+  name: AI assistants & models
+  description: >
+    Chat assistants and LLM APIs instead of OpenAI ChatGPT or Anthropic.
+  alternative_to:
+    - OpenAI ChatGPT
+    - GitHub Copilot
+  updated: 2026-07-06
+
+tools:
+  - name: Mistral AI
+    url: https://mistral.ai/
+    hq: Paris, France
+    flag: "🇫🇷"
+    license: Proprietary + open-weight models
+    hosting: both
+    data_residency: French AI lab; EU-hosted API, plus open-weight models you can self-host.
+    free_tier: Le Chat has a free tier.
+    paid_from: Usage-based API pricing; paid Le Chat plans.
+    best_for: Teams wanting European LLMs, including open-weight models they can run themselves.
+    notes: >
+      Assistant (Le Chat) and developer API (La Plateforme). Publishes
+      open-weight models, so you are not locked into a hosted API.
+    alternative_to:
+      - OpenAI ChatGPT
+      - GitHub Copilot
+    sources:
+      - url: https://mistral.ai/pricing
+        verified: 2026-07-06
