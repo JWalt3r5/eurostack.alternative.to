@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+# Build the static site from data/ into dist/.
+# Runs only in the manual build-publish pipeline (Buddy: on CLICK).
+#
+# TODO (next step): render data/*.yml + templates/ into dist/ (one category
+# index + the landing page), using the design-system tokens.
+set -euo pipefail
+
+echo "build: rendering site from data/ — not implemented yet (placeholder)"
+mkdir -p dist
+echo "build: TODO — data/*.yml + templates/ -> dist/"

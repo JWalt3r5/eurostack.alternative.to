@@ -1,0 +1,8 @@
+# Build output — generated in the build-publish pipeline, never committed.
+dist/
+
+# Node
+node_modules/
+
+# OS / editor cruft
+.DS_Store

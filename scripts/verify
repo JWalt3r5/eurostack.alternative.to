@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+# Verify the catalog data before it can be built/published.
+# Runs automatically on every push (Buddy pipeline: verify-data).
+#
+# TODO (next step): validate each data/*.yml against the entry schema,
+# check for dead links, and reject duplicate tools across categories.
+set -euo pipefail
+
+echo "verify: catalog data check — not implemented yet (placeholder)"
+echo "verify: TODO — schema validation, dead-link check, duplicate detection"
