@@ -1,11 +1,8 @@
 <div align="center">
   <img src="static/og2.png" alt="European alternatives">
-  <br><br>
-  <a href="https://awesome.re"><img src="https://awesome.re/badge-flat.svg" alt="EuroStack"></a>
+  <h1>eurostack.alternative.to</h1>
   <br><br>
 </div>
-
-# eurostack.alternative.to
 
 European alternatives to the US SaaS and cloud tools most teams reach for by
 default. Sorted by category, with where each one is hosted and what it costs.
