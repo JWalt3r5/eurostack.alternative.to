@@ -60,8 +60,9 @@ section.cat h2{font-size:24px;margin:0 0 6px;letter-spacing:-.01em}
 .desc{color:var(--muted);margin:0 0 6px}
 .altto{font-size:13px;color:var(--muted);margin:0 0 18px}.altto b{color:var(--ink);font-weight:600}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
-.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:18px;display:flex;flex-direction:column;gap:10px}
-.card h3{margin:0;font-size:18px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:18px;display:flex;flex-direction:column;gap:10px;color:var(--ink);text-decoration:none;transition:border-color .15s,box-shadow .15s}
+.card:hover{border-color:var(--accent);text-decoration:none;box-shadow:0 2px 14px rgba(26,72,214,.08)}
+.card h3{margin:0;font-size:18px;color:var(--accent)}
 .hq{font-size:13px;color:var(--muted)}
 .badges{display:flex;flex-wrap:wrap;gap:6px}
 .badge{font-size:12px;background:var(--chip);color:var(--ink);border-radius:999px;padding:3px 9px}
@@ -117,15 +118,15 @@ function toolCard(t, catName) {
   ].join('');
   const free = t.free_tier && t.free_tier !== '—';
   const searchKey = esc([t.name, t.hq, catName, t.notes, (t.alternative_to || []).join(' ')].join(' ').toLowerCase());
-  return `<div class="card" data-search="${searchKey}">
-<h3><a href="${esc(t.page)}">${esc(t.name)}</a></h3>
+  return `<a class="card" href="${esc(t.page)}" data-search="${searchKey}">
+<h3>${esc(t.name)}</h3>
 ${t.hq ? `<div class="hq">${esc(t.hq)}</div>` : ''}
 <div class="badges">${badges}</div>
 ${t.data_residency ? `<p class="notes">${esc(t.data_residency)}</p>` : ''}
 <div class="price">${free ? `<span class="free">Free</span> — ${esc(t.free_tier)}` : esc(t.free_tier || '')}${t.paid_from && t.paid_from !== '—' ? `<br>Paid: ${esc(t.paid_from)}` : ''}</div>
 ${t.notes ? `<p class="notes">${esc(t.notes.trim())}</p>` : ''}
-<a class="go" href="${esc(t.page)}">Details →</a>
-</div>`;
+<span class="go">Details →</span>
+</a>`;
 }
 
 function catSection(c, { linkHeading } = {}) {
@@ -150,12 +151,16 @@ rmSync(DIST, { recursive: true, force: true });
 mkdirSync(DIST, { recursive: true });
 
 const SEARCH_JS = `<script>
-(function(){var i=document.getElementById('q');if(!i)return;var cards=[].slice.call(document.querySelectorAll('.card[data-search]'));
-var cats=[].slice.call(document.querySelectorAll('section[data-cat]'));var empty=document.getElementById('noresults');
+document.addEventListener('DOMContentLoaded',function(){
+var i=document.getElementById('q');if(!i)return;
+var cards=[].slice.call(document.querySelectorAll('.card[data-search]'));
+var cats=[].slice.call(document.querySelectorAll('section[data-cat]'));
+var empty=document.getElementById('noresults');
 i.addEventListener('input',function(){var q=i.value.trim().toLowerCase();var any=false;
 cards.forEach(function(c){var m=!q||c.getAttribute('data-search').indexOf(q)>-1;c.style.display=m?'':'none';if(m)any=true;});
-cats.forEach(function(s){var vis=s.querySelectorAll('.card:not([style*="none"])').length;s.style.display=vis?'':'none';});
-if(empty)empty.style.display=any?'none':'block';});})();
+cats.forEach(function(s){var vis=0;s.querySelectorAll('.card').forEach(function(c){if(c.style.display!=='none')vis++;});s.style.display=vis?'':'none';});
+if(empty)empty.style.display=any?'none':'block';});
+});
 </script>`;
 
 // homepage
