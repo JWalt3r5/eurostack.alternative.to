@@ -1,0 +1,33 @@
+# Entry schema for eurostack.alternative.to
+# ------------------------------------------
+# Every file in data/ is one category. Shape:
+#
+# category:
+#   slug: <kebab-case, matches filename>       # required, unique
+#   name: <human title>                        # required
+#   description: <one honest sentence>          # required
+#   alternative_to: [<US tool>, ...]            # the US incumbents this category replaces
+#   updated: YYYY-MM-DD                          # last time the category was reviewed
+#
+# tools:                                         # the European alternatives, honest order
+#   - name: <tool name>                          # required
+#     url: <official site>                       # required — PRIMARY source, never a directory
+#     hq: <City, Country | "Community (FOSS)">   # where it's built/based
+#     flag: <emoji or "">                        # display only; omit for nationless FOSS
+#     license: <Proprietary | Apache-2.0 | Source-available | ...>
+#     hosting: <cloud | self-hosted | both>
+#     data_residency: <one short honest note>    # the "where is my data" answer
+#     free_tier: <short>                          # what you get for free, or "—"
+#     paid_from: <short>                          # entry paid price, or "—"
+#     best_for: <short>                           # who should pick it
+#     notes: <1-2 honest sentences>               # positioning, trade-offs, no hype
+#     alternative_to: [<US tool>, ...]            # per-tool (may narrow the category list)
+#     sources:                                    # every price/claim must be citable
+#       - url: <source>
+#         verified: YYYY-MM-DD
+#
+# Rules:
+# - Primary sources only (official sites/pricing). Never link other alternative directories.
+# - No affiliate links, no pay-for-ranking. Honest notes over marketing.
+# - Buddy appears as ONE fair entry in the categories where it genuinely fits
+#   (ci-cd, deployment-automation, git-hosting) — never the hero of the list.

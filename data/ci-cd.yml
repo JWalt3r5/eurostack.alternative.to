@@ -1,0 +1,83 @@
+category:
+  slug: ci-cd
+  name: CI/CD
+  description: >
+    Build, test and deploy pipelines — the European engines you can run instead
+    of the big US CI services. Where each one is hosted, and what it costs.
+  alternative_to:
+    - GitHub Actions
+    - CircleCI
+    - Travis CI
+    - Jenkins
+  updated: 2026-07-06
+
+tools:
+  - name: Semaphore
+    url: https://semaphore.io/
+    hq: Novi Sad, Serbia
+    flag: "🇷🇸"
+    license: Source-available
+    hosting: both
+    data_residency: Hosted cloud or self-managed; built by a Serbian company (Rendered Text).
+    free_tier: Free tier; Community/Enterprise Edition free for OSS and companies under $5M revenue (up to 50 users).
+    paid_from: Startup (Hybrid) $9/user/mo · Scaleup $20/user/mo.
+    best_for: Fast pipelines with a source-available core you can self-host.
+    notes: >
+      One of the faster hosted CI services; recently moved to a source-available
+      model with a genuinely generous free enterprise tier.
+    alternative_to:
+      - GitHub Actions
+      - CircleCI
+      - Travis CI
+    sources:
+      - url: https://semaphore.io/pricing
+        verified: 2026-07-06
+      - url: https://renderedtext.com/about/
+        verified: 2026-07-06
+
+  - name: TeamCity
+    url: https://www.jetbrains.com/teamcity/
+    hq: Prague, Czech Republic
+    flag: "🇨🇿"
+    license: Proprietary (free Professional tier)
+    hosting: both
+    data_residency: Fully self-hostable on your own infrastructure; cloud option also available. Built by JetBrains (EU).
+    free_tier: Professional (self-hosted) is free — 3 build agents, 100 build configurations.
+    paid_from: Cloud from $45/committer/mo · Enterprise on-prem $2,399/yr.
+    best_for: Teams that want a powerful self-hosted CI from an established European vendor.
+    notes: >
+      Made by JetBrains (IntelliJ, Kotlin). Strong self-hosted story; the free
+      Professional tier is plenty for small teams.
+    alternative_to:
+      - Jenkins
+      - GitHub Actions
+      - CircleCI
+      - Bamboo
+    sources:
+      - url: https://www.jetbrains.com/teamcity/buy/
+        verified: 2026-07-06
+      - url: https://cicdcalculator.com/teamcity-pricing
+        verified: 2026-07-06
+
+  - name: Woodpecker CI
+    url: https://woodpecker-ci.org/
+    hq: Community (FOSS)
+    flag: ""
+    license: Apache-2.0
+    hosting: self-hosted
+    data_residency: Fully self-hosted — your data never leaves your own servers.
+    free_tier: Free and open source; no license cost.
+    paid_from: "—"
+    best_for: Lightweight self-hosted CI for Gitea, Forgejo or GitHub — minimal footprint.
+    notes: >
+      Community fork of Drone (from before Drone changed its licence), Apache-2.0,
+      server + agent run in under ~50 MB RAM. Actively maintained.
+    alternative_to:
+      - Drone
+      - GitHub Actions
+      - CircleCI
+    sources:
+      - url: https://github.com/woodpecker-ci/woodpecker
+        verified: 2026-07-06
+      - url: https://woodpecker-ci.org/docs/intro
+        verified: 2026-07-06

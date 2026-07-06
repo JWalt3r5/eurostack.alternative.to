@@ -1,12 +1,7 @@
-# Buddy pipelines-as-code — eurostack.alternative.to
-# Two pipelines, both bound to the FIXED `main` ref:
-#   1. verify-data   — runs automatically on every push; validates the catalog
-#                       data (schema, dead links, duplicates). This is the quality
-#                       gate for pull requests. It never publishes.
-#   2. build-publish  — MANUAL (on: CLICK). Builds the site from data/ into dist/
-#                       and publishes the artifact. Nothing goes live until a
-#                       maintainer runs this by hand.
-
+# Buddy pipeline (1/2) — eurostack.alternative.to
+# verify-data: runs automatically on every push to the FIXED `main` ref.
+# Validates the catalog data (schema, dead links, duplicates). Never publishes —
+# this is the quality gate for pull requests. Build & publish is pipeline2.
 - pipeline: verify-data
   name: Verify data
   on: EVENT
@@ -23,24 +18,3 @@
     docker_image_tag: "20"
     execute_commands:
     - ./scripts/verify
-
-- pipeline: build-publish
-  name: Build & publish eurostack.alternative.to
-  on: CLICK
-  refs:
-  - refs/heads/main
-  actions:
-  - action: Build site
-    type: BUILD
-    docker_image_name: library/node
-    docker_image_tag: "20"
-    execute_commands:
-    - ./scripts/build
-  - action: Publish site
-    type: PUBLISH_ARTIFACT_VERSION
-    local_path: dist
-    remote_path: /
-    input_type: BUILD_ARTIFACTS
-    versions:
-    - 1.0.0
-    artifact: eurostack-alternative-to
