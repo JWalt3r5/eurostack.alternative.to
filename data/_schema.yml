@@ -21,7 +21,7 @@
 #     paid_from: <short>                          # entry paid price, or "—"
 #     best_for: <short>                           # who should pick it
 #     notes: <1-2 honest sentences>               # positioning, trade-offs, no hype
-#     links:                                       # OPTIONAL — up to 3 extra links
+#     links:                                       # OPTIONAL — up to 4 extra links
 #       - {label: Pricing, url: <url>}             #   (shown on the product page,
 #       - {label: Docs, url: <url>}                #    alongside the main `url`)
 #     alternative_to: [<US tool>, ...]            # per-tool (may narrow the category list)

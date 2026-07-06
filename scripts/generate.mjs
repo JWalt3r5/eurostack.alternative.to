@@ -142,7 +142,7 @@ ${alt ? `<p class="altto">European alternatives to ${alt}</p>` : ''}
 
 // links helper (cap at 3)
 function toolLinks(t) {
-  const links = [{ label: 'Website', url: t.url }, ...((t.links || []).slice(0, 3))].filter((l) => l && l.url);
+  const links = [{ label: 'Website', url: t.url }, ...((t.links || []).slice(0, 4))].filter((l) => l && l.url);
   return links.map((l) => `<a href="${esc(l.url)}" rel="nofollow noopener" target="_blank">${esc(l.label || l.url)} →</a>`).join('');
 }
 

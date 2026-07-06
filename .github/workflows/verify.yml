@@ -1,0 +1,20 @@
+name: verify
+# Validates catalog data on every pull request (including from forks) and on
+# pushes to main. Runs on GitHub's runners so the check shows up inline on PRs —
+# no secrets, read-only. Buddy handles build + publish separately.
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: npm install --no-audit --no-fund
+      - run: node scripts/verify.mjs
