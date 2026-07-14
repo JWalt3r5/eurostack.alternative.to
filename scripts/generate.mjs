@@ -142,6 +142,7 @@ ${extraHead}
 <header class="site"><div class="wrap"><a class="brand" href="/"><b>euro</b>stack<span style="color:var(--muted)">.alternative.to</span></a><nav class="nav"><a href="/how-to-add/">How to add</a><a href="https://github.com/JWalt3r5/eurostack.alternative.to">GitHub</a></nav></div></header>
 ${body}
 <footer class="site"><div class="wrap">Community-maintained list of European alternatives. No affiliate links, no pay-for-ranking. Last updated ${UPDATED}. · <a href="/about/">About</a> · <a href="/how-to-add/">How to add a tool</a> · <a href="https://github.com/JWalt3r5/eurostack.alternative.to">GitHub</a></div></footer>
+  <script defer src="https://assets.buddy.works/scripts/badge.min.js"></script>
 </body>
 </html>`;
 }
