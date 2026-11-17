@@ -26,3 +26,23 @@ tools:
     sources:
       - url: https://plausible.io/#pricing
         verified: 2026-07-06
+
+  - name: trckl.eu
+    url: https://trckl.eu/
+    hq: Milan, Italy
+    flag: "🇮🇹"
+    license: Proprietary
+    hosting: cloud
+    data_residency: 100% EU-hosted infrastructure; zero raw IP addresses stored on disk and no tracking cookies.
+    free_tier: 10 tracked short links/month, QR codes, and EU Bio Page (no credit card required).
+    paid_from: Pro from €12/mo (3 custom domains, REST API v1); Agency €39/mo (25 custom domains).
+    best_for: European teams and agencies needing GDPR-clean branded short links, Designer QR codes, and an Art. 28 DPA.
+    notes: >
+      Cookieless link shortener, Designer QR Studio, and EU Bio Page with automatic
+      traffic-source attribution and self-serve Art. 28 DPA. Proprietary SaaS (not open source).
+    alternative_to:
+      - Bitly
+      - Rebrandly
+    sources:
+      - url: https://trckl.eu/
+        verified: 2026-11-17
